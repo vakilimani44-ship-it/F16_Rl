@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.vscode/
+.idea/
+# training output other than the final model and logs
+runs/*/
+!runs/logs/
+runs/**/ckpt_*.zip
+runs/**/tb/
+*.pkl
