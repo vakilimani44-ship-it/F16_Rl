@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>F-16 Agent Console</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2l3 10 11 6v3l-11-3-1 8 4 3v2l-6-1-6 1v-2l4-3-1-8-11 3v-3l11-6z' fill='%230b7f86'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="scene" aria-label="3D view of the aircraft"></canvas>
+
+<header class="bar topbar">
+  <div class="brand">
+    <strong>F-16 agent console</strong>
+    <span id="agentName" class="muted">connecting…</span>
+  </div>
+  <div class="seg" role="group" aria-label="Camera">
+    <button data-cam="chase" class="on">Chase</button>
+    <button data-cam="orbit">Orbit</button>
+    <button data-cam="cockpit">Cockpit</button>
+  </div>
+  <div class="bar-right">
+    <label class="inline">Sim speed
+      <select id="simSpeed">
+        <option value="0.5">0.5×</option>
+        <option value="1" selected>1×</option>
+        <option value="2">2×</option>
+        <option value="4">4×</option>
+      </select>
+    </label>
+    <button class="ghost" data-reset="level">Reset flight</button>
+    <button class="ghost" data-reset="random">Random start</button>
+    <button id="pauseBtn" class="ghost">Pause</button>
+    <span id="conn" class="conn" title="Connection"><i></i><span>Offline</span></span>
+  </div>
+</header>
+
+<canvas id="compass" width="1040" height="92" aria-label="Heading tape"></canvas>
+
+<aside class="panel targets" aria-label="Target">
+  <h2>Target</h2>
+  <p class="hint">Set the target, then send it. You can change it again mid-maneuver.</p>
+
+  <div class="field">
+    <div class="field-head"><label for="altIn">Altitude</label><span class="unit">ft</span></div>
+    <div class="row">
+      <input id="altRange" type="range" min="10000" max="45000" step="500" aria-label="Target altitude">
+      <input id="altIn" type="number" min="10000" max="45000" step="500">
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="field-head"><label for="hdgIn">Heading</label><span class="unit">degrees</span></div>
+    <div class="dial-wrap">
+      <svg id="dial" viewBox="-110 -110 220 220" role="img" aria-label="Heading dial. Drag to set the target heading."></svg>
+      <input id="hdgIn" type="number" min="0" max="359" step="1">
+    </div>
+    <p class="note">Drag the orange marker, or type a value.</p>
+  </div>
+
+  <div class="field">
+    <div class="field-head"><label for="spdIn">Airspeed</label><span class="unit">ft/s</span></div>
+    <div class="row">
+      <input id="spdRange" type="range" min="600" max="1200" step="10" aria-label="Target airspeed">
+      <input id="spdIn" type="number" min="600" max="1200" step="10">
+    </div>
+    <p id="spdNote" class="note"></p>
+  </div>
+
+  <div class="actions">
+    <button id="sendBtn" class="primary">Send to agent</button>
+    <span id="pendingTag" class="tag" hidden>Not sent yet</span>
+  </div>
+
+  <h3>Quick maneuvers</h3>
+  <div class="chips">
+    <button data-prog="reverse">Reverse course</button>
+    <button data-prog="climb">Climb to 45,000 ft</button>
+    <button data-prog="dive">Dive to 10,000 ft</button>
+    <button data-prog="slow">Slow to 600 ft/s</button>
+    <button data-prog="fast">Speed up to 1,100 ft/s</button>
+    <button data-prog="hard">Hardest combination</button>
+  </div>
+
+</aside>
+
+<aside class="panel telemetry" aria-label="Telemetry">
+  <div id="status" class="status"><b>Waiting for data</b><span></span></div>
+
+  <div class="big-grid">
+    <div class="big"><span class="lbl">Altitude</span><b id="vAlt">–</b><span class="sub" id="dAlt"></span></div>
+    <div class="big"><span class="lbl">Airspeed</span><b id="vSpd">–</b><span class="sub" id="dSpd"></span></div>
+    <div class="big"><span class="lbl">Heading</span><b id="vHdg">–</b><span class="sub" id="dHdg"></span></div>
+    <div class="big"><span class="lbl">Load factor</span><b id="vG">–</b><span class="sub" id="vPeak"></span></div>
+  </div>
+
+  <dl class="rows">
+    <div><dt>Pitch</dt><dd id="vPitch">–</dd></div>
+    <div><dt>Bank</dt><dd id="vRoll">–</dd></div>
+    <div><dt>Angle of attack</dt><dd id="vAoa">–</dd></div>
+    <div><dt>Climb rate</dt><dd id="vClimb">–</dd></div>
+    <div><dt>Mach</dt><dd id="vMach">–</dd></div>
+    <div><dt>Speed in knots</dt><dd id="vKts">–</dd></div>
+    <div><dt>Thrust</dt><dd id="vThrust">–</dd></div>
+    <div><dt>Time on this target</dt><dd id="vClock">–</dd></div>
+  </dl>
+
+  <h3>Agent commands</h3>
+  <div class="bars">
+    <div class="bar-row"><span>Pitch stick</span><div class="meter bi"><i id="mPitch"></i></div></div>
+    <div class="bar-row"><span>Roll stick</span><div class="meter bi"><i id="mRoll"></i></div></div>
+    <div class="bar-row"><span>Rudder</span><div class="meter bi"><i id="mRud"></i></div></div>
+    <div class="bar-row"><span>Throttle</span><div class="meter"><i id="mThr"></i></div></div>
+    <div class="bar-row"><span>Speed brake</span><div class="meter"><i id="mSb"></i></div></div>
+  </div>
+</aside>
+
+<section class="panel gstrip" aria-label="Load factor history">
+  <div class="gstrip-head"><b>Load factor</b><span class="muted">last 60 s of flight time</span></div>
+  <canvas id="gchart"></canvas>
+</section>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>

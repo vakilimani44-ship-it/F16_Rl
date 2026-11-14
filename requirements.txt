@@ -1,0 +1,7 @@
+jsbsim>=1.2
+gymnasium>=1.0
+stable-baselines3>=2.3
+torch
+numpy
+aiohttp
+# optional: tensorboard (training curves)

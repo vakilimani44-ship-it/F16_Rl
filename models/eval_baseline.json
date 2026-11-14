@@ -1,0 +1,61 @@
+{
+  "agent": "scripted pilot",
+  "episodes": 200,
+  "success_rate": 0.065,
+  "crash_rate": 0.0,
+  "mean_time_to_target_s": 52.807692307692314,
+  "median_time_to_target_s": 67.5,
+  "mean_peak_g": 4.041080849999999,
+  "max_peak_g": 11.23429,
+  "min_g_seen": -4.58571,
+  "hard_cases": [
+    {
+      "case": "Max climb 10k -> 45k ft",
+      "reached": false,
+      "time_s": null,
+      "peak_g": 6.55148
+    },
+    {
+      "case": "Max dive 45k -> 10k ft",
+      "reached": false,
+      "time_s": null,
+      "peak_g": 1.82823
+    },
+    {
+      "case": "Reverse course (180 deg turn)",
+      "reached": false,
+      "time_s": null,
+      "peak_g": 3.74924
+    },
+    {
+      "case": "Slow down 1100 -> 600 ft/s",
+      "reached": false,
+      "time_s": null,
+      "peak_g": 2.75526
+    },
+    {
+      "case": "Speed up 600 -> 1100 ft/s",
+      "reached": false,
+      "time_s": null,
+      "peak_g": 1.06519
+    },
+    {
+      "case": "Climb + reverse + slow",
+      "reached": false,
+      "time_s": null,
+      "peak_g": 10.35329
+    },
+    {
+      "case": "Dive + 150 deg turn + fast",
+      "reached": false,
+      "time_s": null,
+      "peak_g": 3.78798
+    },
+    {
+      "case": "Small correction (+500 ft, +10 deg)",
+      "reached": true,
+      "time_s": 29.3,
+      "peak_g": 2.86818
+    }
+  ]
+}

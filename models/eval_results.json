@@ -1,0 +1,288 @@
+{
+  "agent": "models/f16_agent.zip",
+  "episodes": 200,
+  "success_rate": 0.97,
+  "crash_rate": 0.0,
+  "mean_time_to_target_s": 47.75670103092783,
+  "median_time_to_target_s": 42.05,
+  "mean_peak_g": 6.1028693,
+  "max_peak_g": 12.59879,
+  "min_g_seen": -4.25996,
+  "hard_cases": [
+    {
+      "case": "Max climb 10k -> 45k ft",
+      "reached": true,
+      "time_s": 96.6,
+      "peak_g": 7.70925
+    },
+    {
+      "case": "Max dive 45k -> 10k ft",
+      "reached": true,
+      "time_s": 67.6,
+      "peak_g": 11.0885
+    },
+    {
+      "case": "Reverse course (180 deg turn)",
+      "reached": true,
+      "time_s": 31.5,
+      "peak_g": 6.40334
+    },
+    {
+      "case": "Slow down 1100 -> 600 ft/s",
+      "reached": true,
+      "time_s": 34.1,
+      "peak_g": 4.89786
+    },
+    {
+      "case": "Speed up 600 -> 1100 ft/s",
+      "reached": true,
+      "time_s": 34.0,
+      "peak_g": 2.39922
+    },
+    {
+      "case": "Climb + reverse + slow",
+      "reached": true,
+      "time_s": 80.4,
+      "peak_g": 8.09997
+    },
+    {
+      "case": "Dive + 150 deg turn + fast",
+      "reached": true,
+      "time_s": 59.8,
+      "peak_g": 8.60012
+    },
+    {
+      "case": "Small correction (+500 ft, +10 deg)",
+      "reached": true,
+      "time_s": 13.1,
+      "peak_g": 5.90532
+    }
+  ],
+  "corners": [
+    {
+      "case": "10k/600 -> 10k/600",
+      "reached": true,
+      "time_s": 2.0,
+      "peak_g": 3.37411,
+      "crash": false
+    },
+    {
+      "case": "10k/600 -> 10k/600 +180deg",
+      "reached": true,
+      "time_s": 24.9,
+      "peak_g": 6.29768,
+      "crash": false
+    },
+    {
+      "case": "10k/600 -> 10k/1100",
+      "reached": true,
+      "time_s": 26.6,
+      "peak_g": 3.3369,
+      "crash": false
+    },
+    {
+      "case": "10k/600 -> 10k/1100 +180deg",
+      "reached": true,
+      "time_s": 47.5,
+      "peak_g": 8.8375,
+      "crash": false
+    },
+    {
+      "case": "10k/600 -> 45k/600",
+      "reached": true,
+      "time_s": 105.9,
+      "peak_g": 4.56869,
+      "crash": false
+    },
+    {
+      "case": "10k/600 -> 45k/600 +180deg",
+      "reached": true,
+      "time_s": 113.7,
+      "peak_g": 5.02641,
+      "crash": false
+    },
+    {
+      "case": "10k/600 -> 45k/1100",
+      "reached": true,
+      "time_s": 135.9,
+      "peak_g": 4.7553,
+      "crash": false
+    },
+    {
+      "case": "10k/600 -> 45k/1100 +180deg",
+      "reached": true,
+      "time_s": 151.4,
+      "peak_g": 4.73137,
+      "crash": false
+    },
+    {
+      "case": "10k/1100 -> 10k/600",
+      "reached": true,
+      "time_s": 23.4,
+      "peak_g": 5.56937,
+      "crash": false
+    },
+    {
+      "case": "10k/1100 -> 10k/600 +180deg",
+      "reached": true,
+      "time_s": 29.2,
+      "peak_g": 7.52819,
+      "crash": false
+    },
+    {
+      "case": "10k/1100 -> 10k/1100",
+      "reached": true,
+      "time_s": 2.0,
+      "peak_g": 4.16367,
+      "crash": false
+    },
+    {
+      "case": "10k/1100 -> 10k/1100 +180deg",
+      "reached": true,
+      "time_s": 45.4,
+      "peak_g": 11.83341,
+      "crash": false
+    },
+    {
+      "case": "10k/1100 -> 45k/600",
+      "reached": true,
+      "time_s": 79.1,
+      "peak_g": 9.43323,
+      "crash": false
+    },
+    {
+      "case": "10k/1100 -> 45k/600 +180deg",
+      "reached": true,
+      "time_s": 134.7,
+      "peak_g": 10.70542,
+      "crash": false
+    },
+    {
+      "case": "10k/1100 -> 45k/1100",
+      "reached": true,
+      "time_s": 138.9,
+      "peak_g": 8.68382,
+      "crash": false
+    },
+    {
+      "case": "10k/1100 -> 45k/1100 +180deg",
+      "reached": true,
+      "time_s": 135.4,
+      "peak_g": 8.46043,
+      "crash": false
+    },
+    {
+      "case": "45k/600 -> 10k/600",
+      "reached": true,
+      "time_s": 90.1,
+      "peak_g": 11.42181,
+      "crash": false
+    },
+    {
+      "case": "45k/600 -> 10k/600 +180deg",
+      "reached": true,
+      "time_s": 78.9,
+      "peak_g": 11.47561,
+      "crash": false
+    },
+    {
+      "case": "45k/600 -> 10k/1100",
+      "reached": true,
+      "time_s": 76.7,
+      "peak_g": 8.4414,
+      "crash": false
+    },
+    {
+      "case": "45k/600 -> 10k/1100 +180deg",
+      "reached": true,
+      "time_s": 76.1,
+      "peak_g": 8.49683,
+      "crash": false
+    },
+    {
+      "case": "45k/600 -> 45k/600",
+      "reached": true,
+      "time_s": 2.0,
+      "peak_g": 1.21164,
+      "crash": false
+    },
+    {
+      "case": "45k/600 -> 45k/600 +180deg",
+      "reached": true,
+      "time_s": 70.2,
+      "peak_g": 2.01739,
+      "crash": false
+    },
+    {
+      "case": "45k/600 -> 45k/1100",
+      "reached": true,
+      "time_s": 70.8,
+      "peak_g": 1.35829,
+      "crash": false
+    },
+    {
+      "case": "45k/600 -> 45k/1100 +180deg",
+      "reached": true,
+      "time_s": 148.5,
+      "peak_g": 2.09887,
+      "crash": false
+    },
+    {
+      "case": "45k/1100 -> 10k/600",
+      "reached": true,
+      "time_s": 81.7,
+      "peak_g": 11.83291,
+      "crash": false
+    },
+    {
+      "case": "45k/1100 -> 10k/600 +180deg",
+      "reached": true,
+      "time_s": 74.5,
+      "peak_g": 11.84949,
+      "crash": false
+    },
+    {
+      "case": "45k/1100 -> 10k/1100",
+      "reached": true,
+      "time_s": 70.2,
+      "peak_g": 8.76743,
+      "crash": false
+    },
+    {
+      "case": "45k/1100 -> 10k/1100 +180deg",
+      "reached": true,
+      "time_s": 66.8,
+      "peak_g": 8.85336,
+      "crash": false
+    },
+    {
+      "case": "45k/1100 -> 45k/600",
+      "reached": true,
+      "time_s": 122.9,
+      "peak_g": 1.62824,
+      "crash": false
+    },
+    {
+      "case": "45k/1100 -> 45k/600 +180deg",
+      "reached": true,
+      "time_s": 48.9,
+      "peak_g": 3.41544,
+      "crash": false
+    },
+    {
+      "case": "45k/1100 -> 45k/1100",
+      "reached": true,
+      "time_s": 2.0,
+      "peak_g": 2.1033,
+      "crash": false
+    },
+    {
+      "case": "45k/1100 -> 45k/1100 +180deg",
+      "reached": true,
+      "time_s": 71.7,
+      "peak_g": 3.56808,
+      "crash": false
+    }
+  ],
+  "corner_success": 1.0
+}
